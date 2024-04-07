@@ -5,15 +5,17 @@ export class App extends Component {
 
   state = {
     contacts: [],
-    name: ''
+    name: '',
+    number: ''
   }
 
   onSubmit = (e) => {
     e.preventDefault()
-    const { name } = this.state
+    const { name, number } = this.state
     const contact = {
       id: nanoid(),
-      name: name
+      name: name,
+      number: number
     }
     console.dir(contact)
     this.setState(prevState => {
@@ -45,6 +47,8 @@ export class App extends Component {
       onSubmit={this.onSubmit}
     >
       <h1>Phonebook</h1>
+      <label>
+        Name
       <input
         type="text"
         name="name"
@@ -53,12 +57,25 @@ export class App extends Component {
         required
         value={this.state.name}
         onChange={this.onChange}
-      />
+        />
+      </label>
+      <label>
+        Number
+        <input
+          type="tel"
+          name="number"
+          pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+          required
+          value={this.state.number}
+          onChange={this.onChange}
+          />
+      </label>
       <button type="submit">Add contact</button>
       <h2>Contacts</h2>
       <ul>
         {this.state.contacts.map(contact => (
-          <li key={contact.id}>{contact.name}</li>
+          <li key={contact.id}>{contact.name}: {contact.number}</li>
         ))}
       </ul>
     </form>
