@@ -55,8 +55,9 @@ export class App extends Component {
         flexDirection: 'column',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
+        fontSize: 20,
+        color: '#010101',
+        backgroundColor: '#f0f0f0'
       }}
     >
       <h1>Phonebook</h1>
