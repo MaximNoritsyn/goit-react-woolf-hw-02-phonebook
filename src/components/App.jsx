@@ -16,6 +16,10 @@ export class App extends Component {
   }
 
   fillContacts = (contact) => {
+    if (this.state.contacts.find(item => item.name === contact.name)) {
+      alert(`${contact.name} is already in contacts`)
+      return
+    }
     this.setState(prevState => {
       return {
         contacts: [...prevState.contacts, contact]
