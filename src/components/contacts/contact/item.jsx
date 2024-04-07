@@ -1,7 +1,8 @@
 import css from './item.module.css';
 
-export const ContactItem = ({ contact }) => {
+export const ContactItem = ({ contact, deleteContact }) => {
     return <li className={css.item}>
-        {contact.name}: {contact.number}
+        <span>{contact.name}: {contact.number}</span>
+        <button type='button'  data-id={contact.id} onClick={deleteContact}>delete</button>
     </li>
 }

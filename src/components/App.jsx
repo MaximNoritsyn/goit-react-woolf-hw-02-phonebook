@@ -38,6 +38,15 @@ export class App extends Component {
     ))
   )
 
+  deleteContact = (e) => {
+    const contactId = e.target.dataset.id
+    this.setState(prevState => {
+      return {
+        contacts: prevState.contacts.filter(({ id }) => id !== contactId)
+      }
+    })
+  }
+
   render() {
     return <div
       style={{
@@ -54,7 +63,7 @@ export class App extends Component {
       <ContactForm fillContacts={this.fillContacts} />
       <h2>Contacts</h2>
       <Filter filter={this.state.filter} onChangeFilter={this.onChangeFilter} />
-      <ContactList contacts={this.filteredContacts()} />
+      <ContactList contacts={this.filteredContacts()} deleteContact={this.deleteContact} />
     </div>
   };
 };
