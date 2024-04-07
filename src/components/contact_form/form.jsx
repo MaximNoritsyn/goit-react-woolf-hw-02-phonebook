@@ -26,23 +26,21 @@ export class ContactForm extends Component {
         }
     }
 
-    render() {
-
-        const { fillContacts } = this.props
-
-        const onSubmit = (e) => {
-            e.preventDefault()
-            const { name, number } = this.state
-            const contact = {
-                id: nanoid(),
-                name: name.trim(),
-                number: number
-            }
-            fillContacts(contact)
+    onSubmit = (e) => {
+        e.preventDefault()
+        const { name, number } = this.state
+        const contact = {
+            id: nanoid(),
+            name: name.trim(),
+            number: number
         }
+        this.props.fillContacts(contact)
+    }
+
+    render() {
         
         return (
-            <form className={css.form} onSubmit={onSubmit}>
+            <form className={css.form} onSubmit={this.onSubmit}>
                 <label className={css.label}>
                     Name
                     <input

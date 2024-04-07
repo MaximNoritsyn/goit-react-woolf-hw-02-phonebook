@@ -38,8 +38,7 @@ export class App extends Component {
     ))
   )
 
-  deleteContact = (e) => {
-    const contactId = e.target.dataset.id
+  deleteContact = (contactId) => {
     this.setState(prevState => {
       return {
         contacts: prevState.contacts.filter(({ id }) => id !== contactId)
