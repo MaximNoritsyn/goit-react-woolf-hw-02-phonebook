@@ -1,5 +1,7 @@
 import { Component } from 'react';
 import { ContactForm } from './contact_form/form.jsx';
+import { Filter } from './filter/filter.jsx';
+import { ContactList } from './contacts/contact_list/list.jsx';
 
 export class App extends Component {
 
@@ -21,6 +23,17 @@ export class App extends Component {
     })
   }
 
+  onChangeFilter = (e) => {
+    this.setState({
+      filter: e.target.value
+    })
+  }
+
+  filteredContacts = () => (this.state.contacts.filter(contact =>
+    contact.name.toLowerCase().includes(this.state.filter.toLowerCase()
+    ))
+  )
+
   render() {
     return <div
       style={{
@@ -36,23 +49,8 @@ export class App extends Component {
       <h1>Phonebook</h1>
       <ContactForm fillContacts={this.fillContacts} />
       <h2>Contacts</h2>
-      <label>
-        Find contacts by name
-        <input
-          type="text"
-          name="filter"
-          value={this.state.filter}
-          onChange={this.onChange}
-        />
-      </label>
-      <ul>
-        {this.state.contacts.map(contact => {
-          if (this.state.filter && !contact.name.toLowerCase().includes(this.state.filter.toLowerCase())) {
-            return null
-          }
-          return <li key={contact.id}>{contact.name}: {contact.number}</li>
-        })}
-      </ul>
+      <Filter filter={this.state.filter} onChangeFilter={this.onChangeFilter} />
+      <ContactList contacts={this.filteredContacts()} />
     </div>
   };
 };
