@@ -35,6 +35,11 @@ export class ContactForm extends Component {
             number: number
         }
         this.props.fillContacts(contact)
+
+        this.setState({
+            name: '',
+            number: ''
+        })
     }
 
     render() {

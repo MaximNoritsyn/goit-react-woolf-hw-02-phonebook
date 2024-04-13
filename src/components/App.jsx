@@ -16,7 +16,7 @@ export class App extends Component {
   }
 
   fillContacts = (contact) => {
-    if (this.state.contacts.find(item => item.name === contact.name)) {
+    if (this.state.contacts.find(item => item.name.toLowerCase() === contact.name.toLowerCase())) {
       alert(`${contact.name} is already in contacts`)
       return
     }
